@@ -8,7 +8,7 @@
   };
 
   outputs =
-    { nixvim, flake-parts, ... }@inputs:
+    { nixpkgs, nixvim, flake-parts, ... }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [
         "x86_64-linux"
@@ -18,7 +18,10 @@
       ];
 
       flake = {
-	nixosModules.default = import ./nixvim.nix;
+	nixosModules.default = nixvim.legacyPackages."x86_64-linux".makeNixvimWithModule { 
+	  pkgs = nixpkgs.legacyPackages."x86_64-linux";
+	  module = import ./nixvim.nix; 
+	};
       };
 
       perSystem =
