@@ -18,7 +18,7 @@
       ];
 
       flake = {
-	nixosModules.default = nixvim.legacyPackages."x86_64-linux".makeNixvimWithModule { 
+	homeManagerModules.default = nixvim.legacyPackages."x86_64-linux".makeNixvimWithModule { 
 	  pkgs = nixpkgs.legacyPackages."x86_64-linux";
 	  module = import ./nixvim.nix; 
 	};
