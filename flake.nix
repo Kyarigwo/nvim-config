@@ -17,6 +17,10 @@
         "aarch64-darwin"
       ];
 
+      flake = {
+	nixosModules.default = import ./nixvim.nix;
+      };
+
       perSystem =
         { pkgs, system, ... }:
         let
@@ -43,5 +47,6 @@
             default = nvim;
           };
         };
+
     };
 }
